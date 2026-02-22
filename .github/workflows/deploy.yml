@@ -20,25 +20,42 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name:  Verify Flutter installation
+      - name:  ÉTAPE 1 - Vérifier Flutter
         run: |
-          flutter doctor -v
-          which flutter
-          flutter --version
+          echo "=== VÉRIFICATION FLUTTER ==="
+          which flutter || echo "flutter not found in PATH"
+          flutter --version || echo "flutter command failed"
+          flutter doctor -v || echo "flutter doctor failed"
+          echo "=== FIN VÉRIFICATION ==="
 
-      - name:  Install dependencies
-        run: flutter pub get
+      - name:  ÉTAPE 2 - Installer les dépendances
+        run: |
+          echo "=== INSTALLATION DÉPENDANCES ==="
+          flutter pub get
+          echo "=== FIN INSTALLATION ==="
 
-      - name:  Clean
-        run: flutter clean
+      - name:  ÉTAPE 3 - Nettoyer
+        run: |
+          echo "=== NETTOYAGE ==="
+          flutter clean
+          echo "=== FIN NETTOYAGE ==="
 
-      - name:  Build Flutter web
-        run: flutter build web --release --verbose
+      - name:  ÉTAPE 4 - Build Flutter web
+        run: |
+          echo "=== BUILD FLUTTER WEB ==="
+          flutter build web --release
+          echo "=== FIN BUILD ==="
 
-      - name:  List build directory
-        run: ls -la build/web
+      - name:  ÉTAPE 5 - Vérifier le build
+        run: |
+          echo "=== VÉRIFICATION DOSSIER BUILD ==="
+          pwd
+          ls -la
+          ls -la build/ || echo "build folder not found"
+          ls -la build/web/ || echo "build/web folder not found"
+          echo "=== FIN VÉRIFICATION ==="
 
-      - name:  Deploy to Netlify
+      - name:  ÉTAPE 6 - Déployer sur Netlify
         uses: nwtgck/actions-netlify@v3.0
         with:
           publish-dir: './build/web'
