@@ -1,0 +1,87 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+pubspec.lock
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# ==================== AJOUTS CRITIQUES ====================
+
+# 🔥 FIREBASE (FICHIERS SENSIBLES - À NE PAS COMMITER)
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+lib/firebase_options.dart
+.googleServices/
+.firebase/
+*.json
+
+# 🖥️ PLATEFORMES SECONDAIRES (si vous ne les utilisez pas)
+linux/
+macos/
+windows/
+
+# 🔐 VARIABLES D'ENVIRONNEMENT
+.env
+*.env
+.env.local
+.env.production
+.env.development
+
+# 📱 ANDROID (fichiers de signature)
+android/key.properties
+android/*.keystore
+android/*.jks
+
+# 🍎 iOS (fichiers générés)
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Pods/
+ios/Podfile.lock
+ios/ServiceDefinitions.json
+ios/Runner/GeneratedPluginRegistrant.*
+
+# 📦 AUTRES FICHIERS GÉNÉRÉS
+.flutter-plugins
+.flutter-plugins-dependencies
