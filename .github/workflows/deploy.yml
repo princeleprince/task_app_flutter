@@ -3,7 +3,7 @@ name: Build Flutter Web and Deploy to Netlify
 on:
   push:
     branches: [ main, master ]
-  workflow_dispatch:  
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -18,12 +18,25 @@ jobs:
         with:
           flutter-version: '3.16.0'
           channel: 'stable'
+          cache: true
+
+      - name:  Verify Flutter installation
+        run: |
+          flutter doctor -v
+          which flutter
+          flutter --version
 
       - name:  Install dependencies
         run: flutter pub get
 
+      - name:  Clean
+        run: flutter clean
+
       - name:  Build Flutter web
-        run: flutter build web --release
+        run: flutter build web --release --verbose
+
+      - name:  List build directory
+        run: ls -la build/web
 
       - name:  Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
@@ -32,7 +45,7 @@ jobs:
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: " Deploy from GitHub Actions"
-          enable-pull-request-comment: true
+          enable-pull-request-comment: false
           enable-commit-comment: true
           overwrites-pull-request-comment: true
         env:
